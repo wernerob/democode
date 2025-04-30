@@ -1,0 +1,22 @@
+databaseChangeLog:
+-  changeSet:
+      id: 27
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_user
+            columns:
+            -  column:
+                  name: valid_from
+                  type: timestamp with time zone
+            -  column:
+                  name: valid_to
+                  type: timestamp with time zone
+      -  createIndex:
+            tableName: worklist_user
+            indexName: worklist_user_validity_idx
+            columns:
+            -  column:
+                  name: valid_from
+            -  column:
+                  name: valid_to

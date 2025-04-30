@@ -1,0 +1,17 @@
+databaseChangeLog:
+-  changeSet:
+      id: 28
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: address_type
+                  type: varchar(5)
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: address_type
+                  type: varchar(5)

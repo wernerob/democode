@@ -1,0 +1,57 @@
+databaseChangeLog:
+-  changeSet:
+      id: 9
+      author: rusznaknorbert
+      changes:
+      -  dropTable:
+            cascadeConstraints: true
+            tableName: worklist_communication
+      -  createTable:
+            tableName: visit_status_send
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: visit_status_send_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: package_id
+                  type: varchar(15)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: event_time
+                  type: datetime
+                  constraints:
+                     nullable: false
+      -  addColumn:
+            tableName: visit_status
+            columns:
+            -  column:
+                  name: visit_status_send_id
+                  type: varchar(36)
+                  constraints:
+                     foreignKeyName: visit_status_send_fk
+                     references: visit_status_send(id)
+      -  addColumn:
+            tableName: visit_status_aud
+            columns:
+            -  column:
+                  name: visit_status_send_id
+                  type: varchar(36)
+
+      -  createIndex:
+            tableName: visit_status_send
+            indexName: visit_status_send_packageid_idx
+            columns:
+            -  column:
+                  name: package_id
+            unique: true                                  
+                    

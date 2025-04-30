@@ -1,0 +1,23 @@
+databaseChangeLog:
+-  changeSet:
+      id: 10
+      author: rusznaknorbert
+      changes:
+      -  createSequence:
+            sequenceName: address_seq
+            cycle: false
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: worklist_info
+                  type: varchar(10)
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: worklist_info
+                  type: varchar(10)
+            
+            
+                    

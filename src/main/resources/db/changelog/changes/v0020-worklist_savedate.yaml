@@ -1,0 +1,31 @@
+databaseChangeLog:
+-  changeSet:
+      id: 19
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: start_date
+                  type: datetime
+            -  column:
+                  name: save_date
+                  type: datetime
+            -  column:
+                  name: fill_date
+                  type: datetime
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: start_date
+                  type: datetime
+            -  column:
+                  name: save_date
+                  type: datetime
+            -  column:
+                  name: fill_date
+                  type: datetime     
+                
+

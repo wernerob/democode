@@ -1,0 +1,65 @@
+databaseChangeLog:
+-  changeSet:
+      id: 8
+      author: rusznaknorbert
+      changes:
+      -  dropColumn:
+            tableName: worklist_item
+            columnName: form_id
+      -  dropColumn:
+            tableName: worklist_item
+            columnName: sent_status
+      -  dropColumn:
+            tableName: worklist_item_aud
+            columnName: form_id
+      -  dropColumn:
+            tableName: worklist_item_aud
+            columnName: sent_status
+      - renameColumn:
+            tableName: visit_status
+            columnDataType: varchar(36)
+            oldColumnName: status_type
+            newColumnName: visit_type  
+      - renameColumn:
+            tableName: visit_status_aud
+            columnDataType: varchar(36)
+            oldColumnName: status_type
+            newColumnName: visit_type
+      -  addColumn:
+            tableName: worklist_communication
+            columns:
+            -  column:
+                  name: visit_status_id
+                  type: varchar(36)
+                  constraints:
+                     foreignKeyName: worklist_comm_visit_status_fk
+                     references: visit_status(id)
+            - column:
+                 name: communication_type
+                 type: varchar(36)
+                 defaultValue: 'SAVE_ADDRESS'
+                 constraints:
+                     nullable: false
+      -  addColumn:
+            tableName: visit_status
+            columns:
+            -  column:
+                  name: send_status
+                  type: varchar(36)
+                  defaultValue: 'NOT_SENT'
+                  constraints:
+                     nullable: false
+      -  createIndex:
+            tableName: visit_status
+            indexName: visit_status_send_idx
+            columns:
+            -  column:
+                  name: send_status
+      -  addColumn:
+            tableName: visit_status_aud
+            columns:
+            -  column:
+                  name: send_status
+                  type: varchar(36)
+                  defaultValue: 'NOT_SENT'
+                    

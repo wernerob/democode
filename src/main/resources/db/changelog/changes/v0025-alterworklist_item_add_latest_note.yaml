@@ -1,0 +1,24 @@
+databaseChangeLog:
+-  changeSet:
+      id: 25
+      author: erdosattila
+      changes:
+       -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: latest_note_id
+                  type: varchar(36)
+       -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: latest_note_id
+                  type: varchar(36)
+       -  createIndex:
+            tableName: worklist_item
+            indexName: worklist_item_latest_note_idx
+            columns:
+            -  column:
+                  name: latest_note_id
+                  

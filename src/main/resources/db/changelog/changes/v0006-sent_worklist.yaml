@@ -1,0 +1,30 @@
+databaseChangeLog:
+-  changeSet:
+      id: 6
+      author: rusznaknorbert
+      changes:                   
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: status_code
+                  type: varchar(3)
+            -  column:
+                  name: sent_status
+                  type: varchar(36)                                   
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: status_code
+                  type: varchar(3)
+            -  column:
+                  name: sent_status
+                  type: varchar(36)
+      -  createIndex:
+            tableName: worklist_item
+            indexName: worklist_item_sent_status
+            columns:
+            -  column:
+                  name: sent_status
+      

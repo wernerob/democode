@@ -1,0 +1,22 @@
+databaseChangeLog:
+-  changeSet:
+      id: 26
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: visit_status
+            columns:
+            -  column:
+                  name: visit_code
+                  type: varchar(2)
+      -  addColumn:
+            tableName: visit_status_aud
+            columns:
+            -  column:
+                  name: visit_code
+                  type: varchar(2)
+      - dropNotNullConstraint:
+            tableName: visit_status
+            columnDataType: varchar(16)
+            columnName: visit_status_id
+                  

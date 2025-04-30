@@ -1,0 +1,41 @@
+databaseChangeLog:
+-  changeSet:
+      id: 24
+      author: erdosattila
+      changes:
+      -  createTable:
+            tableName: note
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: wl_note_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: worklist_item_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+                     foreignKeyName: worklist_note_fk
+                     references: worklist_item(id)
+            -  column:
+                  name: note
+                  type: varchar(300)
+            -  column:
+                  name: save_date
+                  type: timestamp with time zone
+                  constraints:
+                     nullable: false
+      -  createIndex:
+            tableName: note
+            indexName: note_worklist_id_idx
+            columns:
+            -  column:
+                  name: worklist_item_id

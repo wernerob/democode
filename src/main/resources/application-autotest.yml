@@ -1,0 +1,23 @@
+spring:
+   config:
+      activate:
+         on-profile: autotest
+   datasource:
+      url: jdbc:h2:mem:test;INIT=CREATE SCHEMA IF NOT EXISTS worklist\;SET SCHEMA worklist
+      username: sa
+      password: sa
+
+token:
+   secret: 7B8qN35Q2E8YGEycQyFSfUyYd65gYLTN7PsANPtK3sWHsEkuMDSMLmUnU3ZJquUrDknJCVp2FG7MNYpSebZGPGHSQ
+   validityMs: 3600000
+   
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    
+maja:
+  selfLoaderDomain: http://localhost
+  
+server:
+  port: 0

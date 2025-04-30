@@ -1,0 +1,48 @@
+databaseChangeLog:
+-  changeSet:
+      id: 14
+      author: rusznaknorbert
+      changes:
+      -  createIndex:
+            tableName: worklist_association_item_link
+            indexName: worklist_assoc_itm_lnk_assoc_idx
+            columns:
+            -  column:
+                  name: worklist_association_id
+      -  createIndex:
+            tableName: worklist_association_item_link
+            indexName: worklist_assoc_itm_lnk_item_idx
+            columns:
+            -  column:
+                  name: worklist_item_id
+      -  createIndex:
+            tableName: zone_address_link
+            indexName: zone_address_link_zone_idx
+            columns:
+            -  column:
+                  name: zone_id
+      -  createIndex:
+            tableName: zone_address_link
+            indexName: zone_address_link_address_idx
+            columns:
+            -  column:
+                  name: address_id
+      -  createIndex:
+            tableName: household
+            indexName: household_address_idx
+            columns:
+            -  column:
+                  name: address_id
+      -  createIndex:
+            tableName: worklist_user
+            indexName: worklist_user_item_idx
+            columns:
+            -  column:
+                  name: worklist_item_id
+      -  createIndex:
+            tableName: worklist_association
+            indexName: worklist_association_address_idx
+            columns:
+            -  column:
+                  name: address_id 
+

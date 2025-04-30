@@ -1,0 +1,13 @@
+databaseChangeLog:
+-  changeSet:
+      id: 16
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_user
+            columns:
+            -  column:
+                  name: user_name
+                  type: varchar(30)
+                
+

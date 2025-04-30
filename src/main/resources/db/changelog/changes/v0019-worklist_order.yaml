@@ -1,0 +1,19 @@
+databaseChangeLog:
+-  changeSet:
+      id: 19
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: item_order
+                  type: int
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: item_order
+                  type: int
+                
+

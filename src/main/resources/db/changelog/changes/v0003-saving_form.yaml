@@ -1,0 +1,34 @@
+databaseChangeLog:
+-  changeSet:
+      id: 3
+      author: rusznaknorbert
+      changes:
+       -  addColumn:
+            tableName: worklist_user
+            columns:
+            -  column:
+                  name: census_valid_from
+                  type: datetime
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: census_valid_to
+                  type: datetime
+                  constraints:
+                     nullable: false
+       -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: form_status
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+       -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: form_status
+                  type: varchar(36)
+                 
+            

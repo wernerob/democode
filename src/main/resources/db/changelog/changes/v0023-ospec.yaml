@@ -1,0 +1,17 @@
+databaseChangeLog:
+-  changeSet:
+      id: 23
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: ospec
+                  type: varchar(100)
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: ospec
+                  type: varchar(100)

@@ -1,0 +1,22 @@
+databaseChangeLog:
+-  changeSet:
+      id: 18
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: create_type
+                  type: varchar(36)
+                  defaultValue: 'MIGRATED'
+                  constraints:
+                     nullable: false
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: create_type
+                  type: varchar(36)
+                
+

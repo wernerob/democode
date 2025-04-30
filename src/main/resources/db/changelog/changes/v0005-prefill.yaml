@@ -1,0 +1,102 @@
+databaseChangeLog:
+-  changeSet:
+      id: 5
+      author: rusznaknorbert
+      changes:
+      -  createTable:
+            tableName: household
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: household_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: internal_id
+                  type: varchar(2)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: address_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+                     foreignKeyName: household_address_fk
+                     references: address(id)
+      -  createIndex:
+            tableName: household
+            indexName: household_intid_address_idx
+            columns:
+            -  column:
+                  name: internal_id
+            -  column:
+                  name: address_id
+      -  createTable:
+            tableName: household_aud
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: rev
+                  type: bigint
+                  constraints:
+                     nullable: false
+                     foreignKeyName: household_aud_revinfo_fk
+                     references: revinfo(id)
+            -  column:
+                  name: revtype
+                  type: tinyint
+            -  column:
+                  name: internal_id
+                  type: varchar(2)
+            -  column:
+                  name: address_id
+                  type: varchar(36)
+      -  addPrimaryKey:
+            tableName: household_aud
+            columnNames: id, rev
+            constraintName: household_aud_pk
+      -  dropColumn:
+            tableName: worklist_item
+            columnName: address_id
+      -  dropColumn:
+            tableName: worklist_item_aud
+            columnName: address_id
+                   
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: household_id
+                  type: varchar(36)
+                  constraints:
+                     foreignKeyName: worklist_household_fk
+                     references: household(id)                     
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: household_id
+                  type: varchar(36)
+      -  addColumn:
+            tableName: worklist_user
+            columns:
+            -  column:
+                  name: role_name
+                  type: varchar(36)
+      -  createIndex:
+            tableName: worklist_user
+            indexName: worklist_user_role_idx
+            columns:
+            -  column:
+                  name: role_name            

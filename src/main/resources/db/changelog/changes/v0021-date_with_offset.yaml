@@ -1,0 +1,55 @@
+databaseChangeLog:
+-  changeSet:
+      id: 21
+      author: rusznaknorbert
+      changes:
+      -  modifyDataType:
+            tableName: worklist_item
+            columnName: close_date
+            newDataType: timestamp with time zone
+      -  modifyDataType:
+            tableName: worklist_item_aud
+            columnName: close_date
+            newDataType: timestamp with time zone
+      -  modifyDataType:
+            tableName: worklist_item
+            columnName: start_date
+            newDataType: timestamp with time zone
+      -  modifyDataType:
+            tableName: worklist_item_aud
+            columnName: start_date
+            newDataType: timestamp with time zone
+      -  modifyDataType:
+            tableName: worklist_item
+            columnName: save_date
+            newDataType: timestamp with time zone
+      -  modifyDataType:
+            tableName: worklist_item_aud
+            columnName: save_date
+            newDataType: timestamp with time zone
+      -  modifyDataType:
+            tableName: worklist_item
+            columnName: fill_date
+            newDataType: timestamp with time zone
+      -  modifyDataType:
+            tableName: worklist_item_aud
+            columnName: fill_date
+            newDataType: timestamp with time zone
+      -  dropColumn:
+            tableName: worklist_user
+            columnName: census_valid_from
+      -  dropColumn:
+            tableName: worklist_user
+            columnName: census_valid_to
+      -  modifyDataType:
+            tableName: visit_status
+            columnName: visit_time
+            newDataType: timestamp with time zone
+      -  modifyDataType:
+            tableName: visit_status_aud
+            columnName: visit_time
+            newDataType: timestamp with time zone
+      -  modifyDataType:
+            tableName: visit_status_send
+            columnName: event_time
+            newDataType: timestamp with time zone

@@ -1,0 +1,17 @@
+databaseChangeLog:
+-  changeSet:
+      id: 22
+      author: rusznaknorbert
+      changes:
+      - modifyDataType:
+           tableName: household
+           columnName: internal_id
+           newDataType: varchar(6)
+      - modifyDataType:
+           tableName: household_aud
+           columnName: internal_id
+           newDataType: varchar(6)
+      
+      
+      
+     

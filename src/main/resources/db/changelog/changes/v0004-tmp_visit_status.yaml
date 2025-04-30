@@ -1,0 +1,17 @@
+databaseChangeLog:
+-  changeSet:
+      id: 4
+      author: rusznaknorbert
+      changes:                  
+      -  addColumn:
+            tableName: visit_status
+            columns:
+            -  column:
+                  name: status_type
+                  type: varchar(36)                     
+      -  addColumn:
+            tableName: visit_status_aud
+            columns:
+            -  column:
+                  name: status_type
+                  type: varchar(36)

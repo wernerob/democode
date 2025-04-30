@@ -1,0 +1,34 @@
+databaseChangeLog:
+-  changeSet:
+      id: 12
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            - column:
+                name: latest_visit_status_id
+                type: varchar(36)
+                constraints:
+                   foreignKeyName: worklist_item_lastvisit_fk
+                   references: visit_status(id)
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            - column:
+                name: latest_visit_status_id
+                type: varchar(36)            
+      -  createIndex:
+            tableName: visit_status
+            indexName: visit_status_worklist_idx
+            columns:
+            -  column:
+                  name: worklist_item_id
+      - modifyDataType:
+           tableName: address
+           columnName: house_number
+           newDataType: varchar(13)
+      - modifyDataType:
+           tableName: address_aud
+           columnName: house_number
+           newDataType: varchar(13) 

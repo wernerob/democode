@@ -1,0 +1,433 @@
+databaseChangeLog:
+-  changeSet:
+      id: 1
+      author: rusznaknorbert
+      changes:
+       -  createTable:
+            tableName: revinfo
+            columns:
+            -  column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: revinfo_pk
+                     nullable: false
+            -  column:
+                  name: change_time
+                  type: datetime
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: user_id
+                  type: varchar(36)
+                             
+       -  createTable:
+            tableName: address
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: address_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: zip_code
+                  type: varchar(5)
+            -  column:
+                  name: settlement
+                  type: varchar(50)
+            -  column:
+                  name: place_name
+                  type: varchar(50)
+            -  column:
+                  name: place_type
+                  type: varchar(30)
+            -  column:
+                  name: house_number
+                  type: varchar(10)
+            -  column:
+                  name: parcel_number
+                  type: varchar(20)
+            -  column:
+                  name: building
+                  type: varchar(5)
+            -  column:
+                  name: stairway
+                  type: varchar(20)
+            -  column:
+                  name: floor
+                  type: varchar(8)
+            -  column:
+                  name: door
+                  type: varchar(5)  
+                  
+       -  createTable:
+            tableName: address_aud
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: rev
+                  type: bigint
+                  constraints:
+                     nullable: false
+                     foreignKeyName: address_aud_revinfo_fk
+                     references: revinfo(id)
+            -  column:
+                  name: revtype
+                  type: tinyint  
+            -  column:
+                  name: zip_code
+                  type: varchar(5)
+            -  column:
+                  name: settlement
+                  type: varchar(50)
+            -  column:
+                  name: place_name
+                  type: varchar(50)
+            -  column:
+                  name: place_type
+                  type: varchar(30)
+            -  column:
+                  name: house_number
+                  type: varchar(10)
+            -  column:
+                  name: parcel_number
+                  type: varchar(20)
+            -  column:
+                  name: building
+                  type: varchar(5)
+            -  column:
+                  name: stairway
+                  type: varchar(20)
+            -  column:
+                  name: floor
+                  type: varchar(8)
+            -  column:
+                  name: door
+                  type: varchar(5)
+       -  addPrimaryKey:
+            tableName: address_aud
+            columnNames: id, rev
+            constraintName: address_aud_pk 
+       
+       -  createTable:
+            tableName: zone
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: zone_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: external_id
+                  type: varchar(10)
+                  constraints:
+                     nullable: false
+       -  createIndex:
+            tableName: zone
+            indexName: zone_ext_id_idx
+            columns:
+            -  column:
+                  name: external_id
+                  
+       -  createTable:
+            tableName: zone_address_link
+            columns:
+            -  column:
+                  name: zone_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+                     foreignKeyName: zone_address_zone_fk
+                     references: zone(id)
+            -  column:
+                  name: address_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+                     foreignKeyName: zone_address_address_fk
+                     references: address(id)
+       -  addPrimaryKey:
+            tableName: zone_address_link
+            columnNames: zone_id, address_id
+            constraintName: zone_address_link_pk
+            
+       -  createTable:
+            tableName: worklist_association
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: worklist_association_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: external_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+            - column: 
+                  name: external_system
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: address_id
+                  type: varchar(36)
+                  constraints:
+                     foreignKeyName: worklist_association_address_fk
+                     references: address(id)
+       -  createIndex:
+            tableName: worklist_association
+            indexName: worklist_association_extid_idx
+            columns:
+            -  column:
+                  name: external_id
+                      
+       -  createTable:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: worklist_item_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: form_tmpl_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: form_id
+                  type: varchar(36)
+            -  column:
+                  name: address_id
+                  type: varchar(36)
+                  constraints:
+                     foreignKeyName: worklist_item_address_fk
+                     references: address(id)
+            -  column:
+                  name: note
+                  type: varchar(1024)
+       -  createIndex:
+            tableName: worklist_item
+            indexName: worklist_item_form_tmpl_idx
+            columns:
+            -  column:
+                  name: form_tmpl_id
+                  
+       -  createTable:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: rev
+                  type: bigint
+                  constraints:
+                     nullable: false
+                     foreignKeyName: worklist_item_aud_revinfo_fk
+                     references: revinfo(id)
+            -  column:
+                  name: revtype
+                  type: tinyint
+            -  column:
+                  name: form_tmpl_id
+                  type: varchar(36)
+            -  column:
+                  name: form_id
+                  type: varchar(36)
+            -  column:
+                  name: address_id
+                  type: varchar(36)
+            -  column:
+                  name: note
+                  type: varchar(1024)
+       -  addPrimaryKey:
+            tableName: worklist_item_aud
+            columnNames: id, rev
+            constraintName: worklist_item_aud_pk
+       
+       -  createTable:
+            tableName: worklist_association_item_link
+            columns:
+            -  column:
+                  name: worklist_association_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+                     foreignKeyName: worklist_association_item_association_fk
+                     references: worklist_association(id)
+            -  column:
+                  name: worklist_item_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+                     foreignKeyName: worklist_association_item_item_fk
+                     references: worklist_item(id)
+       -  addPrimaryKey:
+            tableName: worklist_association_item_link
+            columnNames: worklist_association_id, worklist_item_id
+            constraintName: worklist_association_item_link_pk
+                     
+       -  createTable:
+            tableName: worklist_communication
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: worklist_communication_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: worklist_item_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+                     foreignKeyName: worklist_comm_item_fk
+                     references: worklist_item(id)
+            -  column:
+                  name: package_id
+                  type: varchar(15)
+            -  column:
+                  name: event_time
+                  type: datetime
+                  constraints:
+                     nullable: false
+                     
+       -  createTable:
+            tableName: visit_status
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: visit_status_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: worklist_item_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+                     foreignKeyName: visit_wl_item_fk
+                     references: worklist_item(id)
+            -  column:
+                  name: visit_status_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: geo_location_id
+                  type: varchar(36)
+       -  createTable:
+            tableName: visit_status_aud
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: rev
+                  type: bigint
+                  constraints:
+                     nullable: false
+                     foreignKeyName: visit_status_revinfo_fk
+                     references: revinfo(id)
+            -  column:
+                  name: revtype
+                  type: tinyint
+            -  column:
+                  name: worklist_item_id
+                  type: varchar(36)
+            -  column:
+                  name: visit_status_id
+                  type: varchar(36)
+            -  column:
+                  name: geo_location_id
+                  type: varchar(36)
+       -  addPrimaryKey:
+            tableName: visit_status_aud
+            columnNames: id, rev
+            constraintName: visit_status_aud_pk 
+       -  createTable:
+            tableName: worklist_user
+            columns:
+            -  column:
+                  name: id
+                  type: varchar(36)
+                  constraints:
+                     primaryKey: true
+                     primaryKeyName: worklist_user_pk
+                     nullable: false
+            -  column:
+                  name: version
+                  type: int
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: user_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+            -  column:
+                  name: worklist_item_id
+                  type: varchar(36)
+                  constraints:
+                     nullable: false
+                     foreignKeyName: worklist_user_item_fk
+                     references: worklist_item(id)
+       -  createIndex:
+            tableName: worklist_user
+            indexName: worklist_user_user_idx
+            columns:
+            -  column:
+                  name: user_id           
+         

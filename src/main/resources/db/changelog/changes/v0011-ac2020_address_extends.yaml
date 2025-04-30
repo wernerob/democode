@@ -1,0 +1,75 @@
+databaseChangeLog:
+-  changeSet:
+      id: 11
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: address
+            columns:
+            - column:
+                name: county_code
+                type: varchar(2)
+            - column:
+                name: settlement_code
+                type: varchar(6)
+            - column:
+                name: settlement_part
+                type: varchar(3)  
+            - column:
+                name: formatted_address
+                type: varchar(100)
+      -  addColumn:
+            tableName: address_aud
+            columns:
+            - column:
+                name: county_code
+                type: varchar(2)
+            - column:
+                name: settlement_code
+                type: varchar(6)
+            - column:
+                name: settlement_part
+                type: varchar(3)  
+            - column:
+                name: formatted_address
+                type: varchar(100)
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            - column:
+                name: distinguished
+                type: varchar(1)
+            - column:
+                name: worklist_type
+                type: varchar(5)
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            - column:
+                name: distinguished
+                type: varchar(1)
+            - column:
+                name: worklist_type
+                type: varchar(5)
+      -  addColumn:
+            tableName: zone
+            columns:
+            - column:
+                name: settlement_code
+                type: varchar(6)
+            - column:
+                name: external_seq
+                type: varchar(4) 
+      - dropNotNullConstraint:
+            tableName: zone
+            columnDataType: varchar(10)
+            columnName: external_id
+      -  createIndex:
+            tableName: zone
+            indexName: zone_settlement_seq_idx
+            columns:
+            -  column:
+                  name: settlement_code
+            -  column:
+                  name: external_seq
+                    

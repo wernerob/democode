@@ -1,0 +1,17 @@
+databaseChangeLog:
+-  changeSet:
+      id: 30
+      author: erdosattila
+      changes:
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: succesfull_previous_visit
+                  type: varchar(1)
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: succesfull_previous_visit
+                  type: varchar(1)

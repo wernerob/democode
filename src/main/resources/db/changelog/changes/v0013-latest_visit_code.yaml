@@ -1,0 +1,18 @@
+databaseChangeLog:
+-  changeSet:
+      id: 13
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            - column:
+                name: latest_visit_code
+                type: varchar(3)
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            - column:
+                name: latest_visit_code
+                type: varchar(3)            
+     

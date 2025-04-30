@@ -1,0 +1,64 @@
+spring:
+   application:
+      name: worklist
+      instance_id: worklist
+   jpa:
+      open-in-view: false
+      hibernate:
+         ddl-auto: validate
+      properties:
+         hibernate:
+            default_schema: ${spring.application.name}
+            jdbc:
+               lob:
+                  non_contextual_creation: true
+         org:
+            hibernate:
+               envers:
+                  revision_on_collection_change: false
+   jackson:
+      deserialization:
+        adjust_dates_to_context_time_zone: false
+   liquibase:
+      enabled: true
+      change-log: classpath:/db/changelog/db.changelog-master.yaml
+      database-change-log-table: db_migration
+      database-change-log-lock-table: db_migration_lock
+      default-schema: ${spring.application.name}
+      parameters:
+         app_user: ${spring.datasource.username}
+   loki:
+      url: http://loki:3100
+
+server:
+   port: 8082
+   tomcat:
+     remote-ip-header: x-forwarded-for
+   http2:
+     enabled: true
+   shutdown: graceful
+
+jasypt:
+   encryptor:
+     bean: encryptorBean
+logging:
+  path: /app/logs  
+   
+feign:
+  client:
+    form:
+      baseUrl: http://form
+    config:
+      default:
+        connectTimeout: 60000
+        readTimeout: 10000
+        
+maja:
+   authModul: auth
+   clearCache:
+     cron: 0 0 * * * *
+   passwordPolicyEnabled: false
+   perItemValidityOsaps: 8074,1711,8075
+     
+cors:
+  origins: https://maja.ksh.hu,https://idgs.ksh.hu,https://majateszt.ksh.hu,https://majatest.ksh.hu,http://kshdevapp.ksh.hu,http://kshdevapp.ksh.hu:8010,http://kshdevapp.ksh.hu:8020

@@ -1,0 +1,14 @@
+databaseChangeLog:
+-  changeSet:
+      id: perms
+      author: rusznaknorbert
+      runAlways: true
+      runOnChange: true
+      runOrder: last
+      changes:
+        - sqlFile:          
+           encoding: UTF-8
+           splitStatements: true
+           path: db/changelog/perms.sql
+           dbms: postgresql
+           validCheckSum: 1:any

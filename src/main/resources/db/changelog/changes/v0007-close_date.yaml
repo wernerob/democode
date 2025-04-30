@@ -1,0 +1,23 @@
+databaseChangeLog:
+-  changeSet:
+      id: 7
+      author: rusznaknorbert
+      changes:                   
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: close_date
+                  type: datetime                                          
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: close_date
+                  type: datetime
+      -  dropColumn:
+            tableName: worklist_item
+            columnName: status_code
+      -  dropColumn:
+            tableName: worklist_item_aud
+            columnName: status_code              

@@ -1,0 +1,13 @@
+databaseChangeLog:
+-  changeSet:
+      id: 29
+      author: rusznaknorbert
+      changes:
+      -  modifyDataType:
+            tableName: worklist_item
+            columnName: worklist_info
+            newDataType: varchar(100)
+      -  modifyDataType:
+            tableName: worklist_item_aud
+            columnName: worklist_info
+            newDataType: varchar(100)

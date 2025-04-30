@@ -1,0 +1,27 @@
+databaseChangeLog:
+-  changeSet:
+      id: 2
+      author: rusznaknorbert
+      changes:
+       -  addColumn:
+            tableName: visit_status
+            columns:
+            -  column:
+                  name: note
+                  type: varchar(1024)
+            -  column:
+                  name: visit_time
+                  type: datetime
+                  constraints:
+                     nullable: false
+       -  addColumn:
+            tableName: visit_status_aud
+            columns:
+            -  column:
+                  name: note
+                  type: varchar(1024)
+            -  column:
+                  name: visit_time
+                  type: datetime
+      
+      

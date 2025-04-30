@@ -1,0 +1,29 @@
+databaseChangeLog:
+-  changeSet:
+      id: 15
+      author: rusznaknorbert
+      changes:
+      -  addColumn:
+            tableName: worklist_item
+            columns:
+            -  column:
+                  name: send_status
+                  type: varchar(36)
+                  defaultValue: 'NOT_SENT'
+                  constraints:
+                     nullable: false
+      -  addColumn:
+            tableName: worklist_item_aud
+            columns:
+            -  column:
+                  name: send_status
+                  type: varchar(36)
+      -  createIndex:
+            tableName: worklist_item
+            indexName: worklist_item_send_idx
+            columns:
+            -  column:
+                  name: send_status
+                 
+                 
+
